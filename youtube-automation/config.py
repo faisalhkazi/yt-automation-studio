@@ -1,0 +1,16 @@
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
+STORAGE_DIR = BASE_DIR / "storage"
+
+SCRIPT_DIR = STORAGE_DIR / "scripts"
+AUDIO_DIR = STORAGE_DIR / "audio"
+VIDEO_DIR = STORAGE_DIR / "videos"
+IMAGE_DIR = STORAGE_DIR / "images"
+SUBTITLE_DIR = STORAGE_DIR / "subtitles"
+THUMBNAIL_DIR = STORAGE_DIR / "thumbnails"
+
+PIPER_BINARY = "/home/rocky/youtube-project/piper/piper/piper"
+
+PIPER_MODEL = "/home/rocky/youtube-project/piper/models/en_US-lessac-medium.onnx"

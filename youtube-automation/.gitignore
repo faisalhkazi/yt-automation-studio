@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+
+# Database
+database/database.db
+
+# Generated Content
+storage/audio/
+storage/videos/
+storage/images/
+storage/subtitles/
+storage/thumbnails/
+storage/scripts/
+
+# Environment Variables
+.env
+
+# OS Files
+.DS_Store
+Thumbs.db

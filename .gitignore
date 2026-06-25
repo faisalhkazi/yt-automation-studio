@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+youtube-automation/logs/
+
+# SQLite
+*.db
+
+# Generated Content
+youtube-automation/storage/audio/
+youtube-automation/storage/images/
+youtube-automation/storage/videos/
+youtube-automation/storage/subtitles/
+youtube-automation/storage/thumbnails/
+youtube-automation/storage/scripts/
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
