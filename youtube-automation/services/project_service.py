@@ -179,3 +179,23 @@ class ProjectService:
         conn.close()
 
         return project
+
+    @staticmethod
+    def update_prompt(project_id: int, prompt_file: str):
+
+        conn = DatabaseService.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE projects
+            SET prompt_file = ?,
+                status = ?
+            WHERE id = ?
+        """, (
+            prompt_file,
+            "PROMPTS_READY",
+            project_id
+        ))
+
+        conn.commit()
+        conn.close()

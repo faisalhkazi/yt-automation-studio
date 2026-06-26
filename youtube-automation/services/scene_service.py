@@ -4,11 +4,12 @@ from services.logger import logger
 from services.storage_service import StorageService
 from services.project_service import ProjectService
 
+
 class SceneService:
 
     @staticmethod
     def generate(project_id: int):
-        
+
         project_dir = StorageService.project_dir(project_id)
 
         script_file = project_dir / "script.txt"
@@ -23,13 +24,43 @@ class SceneService:
             if p.strip()
         ]
 
+        TARGET_WORDS = 140
+
         scenes = []
 
-        for index, paragraph in enumerate(paragraphs, start=1):
+        current_scene = []
+        current_words = 0
+
+        scene_number = 1
+
+        for paragraph in paragraphs:
+
+            words = len(paragraph.split())
+
+            current_scene.append(paragraph)
+
+            current_words += words
+
+            if current_words >= TARGET_WORDS:
+
+                scenes.append({
+                    "scene": scene_number,
+                    "text": "\n\n".join(current_scene)
+                })
+
+                scene_number += 1
+
+                current_scene = []
+
+                current_words = 0
+
+        # Save remaining paragraphs
+
+        if current_scene:
 
             scenes.append({
-                "scene": index,
-                "text": paragraph
+                "scene": scene_number,
+                "text": "\n\n".join(current_scene)
             })
 
         scene_file.write_text(
@@ -42,12 +73,10 @@ class SceneService:
         )
 
         ProjectService.update_scene(
-        project_id,
-        scene_file.relative_to(scene_file.parents[2]).as_posix()
+            project_id,
+            scene_file.relative_to(scene_file.parents[2]).as_posix()
         )
 
         logger.info(f"{len(scenes)} scenes generated")
-
-
 
         return scene_file
