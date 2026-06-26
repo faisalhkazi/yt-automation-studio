@@ -1,36 +1,45 @@
 import subprocess
 from pathlib import Path
 
-from config import AUDIO_DIR, PIPER_BINARY, PIPER_MODEL
+from config import PIPER_BINARY, PIPER_MODEL
 from services.logger import logger
+from services.storage_service import StorageService
 
 
 class PiperService:
 
     @staticmethod
-    def generate(script_file: Path):
+    def generate(
+        project_id: int,
+        script_file: Path
+    ):
 
-        AUDIO_DIR.mkdir(parents=True, exist_ok=True)
+        project_dir = StorageService.project_dir(project_id)
 
-        output_file = AUDIO_DIR / f"{script_file.stem}.wav"
+        output_file = project_dir / "audio.wav"
 
         command = [
-            PIPER_BINARY,
+            str(PIPER_BINARY),
             "--model",
-            PIPER_MODEL,
+            str(PIPER_MODEL),
             "--output_file",
             str(output_file),
         ]
 
-        logger.info(f"Generating audio from {script_file.name}")
+        logger.info(
+            f"Generating audio from {script_file.name}"
+        )
 
         with open(script_file, "rb") as infile:
+
             subprocess.run(
                 command,
                 stdin=infile,
-                check=True,
+                check=True
             )
 
-        logger.info(f"Audio generated: {output_file.name}")
+        logger.info(
+            f"Audio generated : {output_file}"
+        )
 
         return output_file

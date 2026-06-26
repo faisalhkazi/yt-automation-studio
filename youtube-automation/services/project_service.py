@@ -135,3 +135,25 @@ class ProjectService:
         conn.close()
 
         return rows
+
+
+
+    @staticmethod
+    def get(project_id: int):
+
+        conn = DatabaseService.connect()
+
+        conn.row_factory = __import__("sqlite3").Row
+
+        cursor = conn.cursor()
+
+        cursor.execute(
+                "SELECT * FROM projects WHERE id=?",
+                (project_id,)
+                )
+
+        project = cursor.fetchone()
+
+        conn.close()
+
+        return project

@@ -1,22 +1,22 @@
-from datetime import datetime
 from pathlib import Path
 
-from config import SCRIPT_DIR
+from services.storage_service import StorageService
 from services.logger import logger
 
 
 class ScriptService:
 
     @staticmethod
-    def save(script: str):
+    def save(project_id: int, script: str) -> Path:
 
-        SCRIPT_DIR.mkdir(parents=True, exist_ok=True)
+        project_dir = StorageService.project_dir(project_id)
 
-        filename = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filepath = project_dir / "script.txt"
 
-        filepath = SCRIPT_DIR / f"{filename}.txt"
-
-        filepath.write_text(script, encoding="utf-8")
+        filepath.write_text(
+            script,
+            encoding="utf-8"
+        )
 
         logger.info(f"Script saved : {filepath}")
 

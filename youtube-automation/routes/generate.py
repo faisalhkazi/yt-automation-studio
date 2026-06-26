@@ -23,26 +23,32 @@ async def generate(
     )
 
     # Save script to file
-    script_path = ScriptService.save(script)
+    script_path = ScriptService.save(
+    project_id,
+    script
+    )
 
     # Update database with script path
     ProjectService.update_script(
         project_id,
-        str(script_path)
+        script_path.relative_to(script_path.parents[2]).as_posix()
     )
 
     # Generate audio
-    audio_path = PiperService.generate(script_path)
+    audio_path = PiperService.generate(
+    project_id,
+    script_path
+    )
 
     # Update database with audio path
     ProjectService.update_audio(
         project_id,
-        str(audio_path)
+        audio_path.relative_to(audio_path.parents[2]).as_posix()
     )
     
 
     return RedirectResponse(
-    url="/",
+    url=f"/project/{project_id}",
     status_code=303
     )
 
