@@ -101,6 +101,11 @@ class="btn btn-primary">
 
 
 <tr>
+    <td><b>Prompt File</b></td>
+    <td>{{ project.prompt_file or "Not Generated" }}</td>
+</tr>    
+
+<tr>
     <td><b>Scene File</b></td>
     <td>{{ project.scene_file or "Not Generated" }}</td>
 </tr>
@@ -114,6 +119,12 @@ class="btn btn-primary">
     <button>🎬 Generate Scenes</button>
 </a>
 
+
+<hr>
+
+<a href="/project/{{ project.id }}/generate-prompts">
+    <button>🧠 Generate Prompts</button>
+</a>
 
 </a>
 
