@@ -23,6 +23,8 @@ class ProjectService:
 
             script_file TEXT,
 
+            scene_file TEXT,
+
             audio_file TEXT,
 
             video_file TEXT,
@@ -108,6 +110,26 @@ class ProjectService:
         """, (
             audio_file,
             "AUDIO_READY",
+            project_id
+        ))
+
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def update_scene(project_id: int, scene_file: str):
+
+        conn = DatabaseService.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE projects
+            SET scene_file = ?,
+                status = ?
+            WHERE id = ?
+        """, (
+            scene_file,
+            "SCENES_READY",
             project_id
         ))
 

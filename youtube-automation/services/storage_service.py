@@ -16,3 +16,7 @@ class StorageService:
         )
 
         return folder
+    @staticmethod
+    def project_file(project_id: int, filename: str):
+
+        return StorageService.project_dir(project_id) / filename
