@@ -156,6 +156,25 @@ class ProjectService:
         conn.commit()
         conn.close()
 
+    @staticmethod
+    def update_visual_prompt(project_id: int, visual_prompt_file: str):
+
+        conn = DatabaseService.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE projects
+            SET visual_prompt_file=?,
+                status=?
+            WHERE id=?
+        """, (
+            visual_prompt_file,
+            "VISUAL_PROMPTS_READY",
+            project_id
+        ))
+
+        conn.commit()
+        conn.close()
 
     @staticmethod
     def list_projects():

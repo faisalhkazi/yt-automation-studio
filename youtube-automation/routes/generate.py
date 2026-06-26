@@ -3,7 +3,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.responses import RedirectResponse
 from services.project_service import ProjectService
 from services.script_service import ScriptService
-from services.piper_service import PiperService
+from providers.tts.piper_provider import PiperService
+
 
 router = APIRouter()
 
