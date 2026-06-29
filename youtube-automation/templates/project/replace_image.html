@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Replace Scene Image
+</h2>
+
+<div class="card shadow-sm">
+
+    <div class="card-header">
+
+        <h5 class="mb-0">
+
+            Scene {{ scene }}
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <h6>Current Image</h6>
+
+                <img
+                    src="/storage/project_{{ project.id }}/images/scene_{{ '%03d'|format(scene) }}.png"
+                    class="img-fluid rounded border">
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h6>Select New Image</h6>
+
+                <form
+                    action="/project/{{ project.id }}/replace-image/{{ scene }}"
+                    method="post"
+                    enctype="multipart/form-data">
+
+                    <input
+                        class="form-control mb-3"
+                        type="file"
+                        name="image"
+                        accept="image/*"
+                        required>
+
+                    <button
+                        class="btn btn-warning">
+
+                        💾 Replace Image
+
+                    </button>
+
+                    <a
+                        href="/project/{{ project.id }}/timeline"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

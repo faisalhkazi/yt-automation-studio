@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -17,3 +18,7 @@ THUMBNAIL_DIR = STORAGE_DIR / "thumbnails"
 PIPER_BINARY = PROJECT_ROOT / "piper" / "piper" / "piper"
 
 PIPER_MODEL = PROJECT_ROOT / "piper" / "models" / "en_US-lessac-medium.onnx"
+
+HF_TOKEN = os.getenv("HF_TOKEN")
+
+HF_IMAGE_MODEL = "black-forest-labs/FLUX.1-dev"

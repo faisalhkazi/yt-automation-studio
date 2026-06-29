@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2>{{ project.title }}</h2>
+
+        {% if success == "images_uploaded" %}
+
+        <div class="alert alert-success alert-dismissible fade show mb-4">
+
+            <strong>✅ Success!</strong>
+
+            Images uploaded successfully.
+
+            You can now generate the timeline.
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+        {% endif %}
+
+        <p class="text-muted">
+
+            {{ project.category }}
+
+        </p>
+
+    </div>
+
+    <span class="badge bg-success fs-6">
+
+        {{ project.status }}
+
+    </span>
+
+</div>
+
+<div class="row">
+
+    <!-- LEFT COLUMN -->
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                Workflow
+
+            </div>
+
+            <div class="list-group list-group-flush">
+
+                <a href="#" class="list-group-item">
+
+                    ✅ Script
+
+                </a>
+
+                <a href="#" class="list-group-item">
+
+                    ✅ Audio
+
+                </a>
+
+                <a
+                    href="/project/{{ project.id }}/generate-scenes"
+                    class="list-group-item list-group-item-action">
+
+                    🎬 Generate Scenes
+
+                </a>
+
+                <a
+                    href="/project/{{ project.id }}/upload-images"
+                    class="list-group-item list-group-item-action">
+
+                    🖼 Upload Images
+
+                </a>
+
+                <a
+                    href="/project/{{ project.id }}/generate-timeline"
+                    class="list-group-item list-group-item-action">
+
+                    ⏱ Generate Timeline
+
+                </a>
+
+                <a
+                    href="/project/{{ project.id }}/generate-video"
+                    class="list-group-item list-group-item-action">
+
+                    🎥 Generate Video
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+
+    <div class="col-md-8">
+
+        <div class="row">
+
+            <!-- AUDIO -->
+
+            <div class="col-md-6">
+
+                <div class="card h-100">
+
+                    <div class="card-header">
+
+                        🎵 Audio Preview
+
+                    </div>
+
+                    <div class="card-body">
+
+                        {% if project.audio_file %}
+
+                        <audio controls class="w-100">
+
+                            <source
+                                src="/{{ project.audio_file }}"
+                                type="audio/wav">
+
+                        </audio>
+
+                        {% else %}
+
+                        <p>No audio generated.</p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- VIDEO -->
+
+            <div class="col-md-6">
+
+                <div class="card h-100">
+
+                    <div class="card-header">
+
+                        🎥 Video Preview
+
+                    </div>
+
+                    <div class="card-body">
+
+                        {% if project.video_file %}
+
+                        <div class="ratio ratio-16x9">
+
+                            <video controls>
+
+                                <source
+                                    src="/{{ project.video_file }}"
+                                    type="video/mp4">
+
+                            </video>
+
+                        </div>
+
+                        <div class="mt-3">
+
+                            <a
+                                href="/{{ project.video_file }}"
+                                class="btn btn-success w-100"
+                                download>
+
+                                ⬇ Download Video
+
+                            </a>
+
+                        </div>
+
+                        {% else %}
+
+                        <p>No video generated.</p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card mt-4">
+
+    <div class="card-header">
+
+        <h5>Scene Preview</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        {% if scenes %}
+
+            {% for scene in scenes %}
+
+            <div class="border rounded p-3 mb-3">
+
+                <h6>
+
+                    Scene {{ scene.scene }}
+
+                </h6>
+
+                <p>
+
+                    {{ scene.text }}
+
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="alert alert-warning">
+
+                Scenes have not been generated yet.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

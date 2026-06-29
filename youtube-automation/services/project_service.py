@@ -157,6 +157,67 @@ class ProjectService:
         conn.close()
 
     @staticmethod
+    def update_images(project_id: int, image_dir: str):
+
+        conn = DatabaseService.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE projects
+            SET image_dir = ?,
+                status = ?
+            WHERE id = ?
+        """, (
+            image_dir,
+            "IMAGES_READY",
+            project_id
+        ))
+
+        conn.commit()
+        conn.close()
+
+    @staticmethod
+    def update_timeline(project_id: int, timeline_file: str):
+
+        conn = DatabaseService.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE projects
+            SET timeline_file=?,
+                status=?
+            WHERE id=?
+        """, (
+            timeline_file,
+            "TIMELINE_READY",
+            project_id
+        ))
+
+        conn.commit()
+        conn.close()
+
+
+    @staticmethod
+    def update_video(project_id: int, video_file: str):
+
+        conn = DatabaseService.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            UPDATE projects
+            SET video_file=?,
+                status='VIDEO_READY'
+            WHERE id=?
+        """, (
+            video_file,
+            project_id
+        ))
+
+        conn.commit()
+        conn.close()
+
+
+    @staticmethod
     def update_visual_prompt(project_id: int, visual_prompt_file: str):
 
         conn = DatabaseService.connect()

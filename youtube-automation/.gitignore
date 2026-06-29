@@ -1,10 +1,7 @@
 # Python
-__pycache__/
-*.py[cod]
-*.pyo
-
-# Virtual Environment
 venv/
+__pycache__/
+*.pyc
 
 # IDE
 .vscode/
@@ -12,21 +9,15 @@ venv/
 
 # Logs
 logs/
+*.log
 
 # Database
-database/database.db
+*.db
 
-# Generated Content
-storage/audio/
-storage/videos/
-storage/images/
-storage/subtitles/
-storage/thumbnails/
-storage/scripts/
+# Generated content
+storage/
+backup/
 
-# Environment Variables
-.env
-
-# OS Files
+# OS
 .DS_Store
 Thumbs.db

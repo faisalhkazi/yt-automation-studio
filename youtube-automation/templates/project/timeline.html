@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Timeline Preview
+</h2>
+
+<div class="card shadow-sm">
+
+    <div class="card-header">
+
+        <h5 class="mb-0">
+
+            Generated Timeline
+
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Scene</th>
+		    <th>Narration</th>
+                    <th>Image</th>
+                    <th>Duration</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for item in timeline %}
+
+                <tr>
+
+                    <td>
+
+                        {{ item.scene }}
+
+                    </td>
+
+
+		    <td style="max-width:450px;">
+
+			    {{ item.text[:140] }}...
+
+		    </td>
+
+
+		    <td>
+
+			    <img
+					    src="/storage/project_{{ project.id }}/{{ item.image }}"
+					    class="img-thumbnail"
+					    style="
+						   width:240px;
+						   height:135px;
+						   object-fit:cover;
+						   border-radius:10px;
+						   ">
+
+		    </td>
+
+                    <td>
+
+                        {{ item.duration }} sec
+
+                    </td>
+
+		    <td>
+
+			    <a
+					    href="/project/{{ project.id }}/replace-image/{{ item.scene }}"
+					    class="btn btn-warning btn-sm">
+
+				    ✏ Replace
+
+			    </a>
+
+		    </td>
+
+
+
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <div class="text-end mt-4">
+
+            <a
+                href="/project/{{ project.id }}/generate-video"
+                class="btn btn-success">
+
+                🎬 Generate Video
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "wizard/base.html" %}
+
+{% block content %}
+
+<h2>Create New Project</h2>
+
+<form action="/wizard/create" method="post">
+
+<div class="mb-3">
+
+<label>
+
+Title
+
+</label>
+
+<input
+class="form-control"
+name="title"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Category
+
+</label>
+
+<select
+class="form-select"
+name="category">
+
+<option>History</option>
+
+<option>Finance</option>
+
+<option>Sports</option>
+
+<option>Motivation</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Script
+
+</label>
+
+<textarea
+
+class="form-control"
+
+rows="12"
+
+name="script"
+
+required>
+
+</textarea>
+
+</div>
+
+<div class="text-end">
+
+<button
+
+class="btn btn-primary btn-lg">
+
+Next →
+
+</button>
+
+</div>
+
+</form>
+
+{% endblock %}

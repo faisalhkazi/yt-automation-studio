@@ -20,3 +20,17 @@ class StorageService:
     def project_file(project_id: int, filename: str):
 
         return StorageService.project_dir(project_id) / filename
+
+    @staticmethod
+    def render_dir(project_id: int):
+
+        project_dir = StorageService.project_dir(project_id)
+
+        render_dir = project_dir / "render"
+
+        render_dir.mkdir(
+            parents=True,
+            exist_ok=True
+        )
+
+        return render_dir
