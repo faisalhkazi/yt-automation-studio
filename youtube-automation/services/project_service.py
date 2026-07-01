@@ -15,9 +15,9 @@ class ProjectService:
 
             id INTEGER PRIMARY KEY AUTOINCREMENT,
 
-            title TEXT,
+            title TEXT NOT NULL,
 
-            category TEXT,
+            category TEXT NOT NULL,
 
             script TEXT,
 
@@ -25,18 +25,71 @@ class ProjectService:
 
             scene_file TEXT,
 
+            prompt_file TEXT,
+
+            visual_prompt_file TEXT,
+
+            image_dir TEXT,
+
+            timeline_file TEXT,
+
             audio_file TEXT,
 
             video_file TEXT,
 
             thumbnail_file TEXT,
 
+            youtube_video_id TEXT,
+
+            youtube_video_url TEXT,
+
+            youtube_playlist_id TEXT,
+
+            youtube_upload_status TEXT,
+
             status TEXT,
 
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
         )
+                       """)
+
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS youtube_settings (
+
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            channel_id TEXT,
+
+            channel_name TEXT,
+
+            connected INTEGER DEFAULT 0,
+
+            default_visibility TEXT DEFAULT 'private',
+
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+        )
         """)
+
+        
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS youtube_playlists (
+
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            category TEXT,
+
+            playlist_id TEXT,
+
+            playlist_name TEXT,
+
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+        )
+        """)
+
 
         conn.commit()
 

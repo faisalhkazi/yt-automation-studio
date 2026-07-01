@@ -24,16 +24,17 @@ async def project(
     scenes = ScenePreviewService.load(project_id)
 
 
+
     return templates.TemplateResponse(
             request=request,
             name="project/overview.html",
             context={
-
-                "request": request,
                 "project": project,
                 "workflow": workflow,
                 "scenes": scenes,
                 "success": success
                 }
             )
+
+
 

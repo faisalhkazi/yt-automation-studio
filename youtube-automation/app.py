@@ -12,6 +12,12 @@ from routes.video import router as video_router
 from routes.timeline import router as timeline_router
 from routes.images import router as images_router
 from routes.wizard import router as wizard_router
+from routes.youtube import router as youtube_router
+from routes.settings import router as settings_router
+from routes.youtube_auth import router as youtube_auth_router
+
+
+
 
 
 
@@ -41,5 +47,12 @@ app.include_router(images_router)
 app.include_router(timeline_router)
 app.include_router(video_router)
 app.include_router(wizard_router)
+app.include_router(youtube_router)
+app.include_router(project_router)
+app.include_router(settings_router)
+app.include_router(youtube_auth_router)
+
+
+
 
 

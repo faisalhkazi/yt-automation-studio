@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h3>📺 YouTube Settings</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        {% if settings %}
+
+            <div class="alert alert-success">
+
+                <h5>✅ Connected</h5>
+
+                <hr>
+
+                <strong>Channel</strong>
+
+                <br>
+
+                {{ settings.channel_name }}
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-warning">
+
+                <h5>⚠ Not Connected</h5>
+
+                No YouTube account connected.
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

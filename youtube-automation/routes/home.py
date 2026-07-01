@@ -14,9 +14,12 @@ async def home(request: Request):
     projects = ProjectService.list_projects()
 
     return templates.TemplateResponse(
-        request=request,
-        name="index.html",
-        context={
-            "projects": projects
-        }
-    )
+            request=request,
+            name="index.html",
+            context={
+                "projects": projects
+                }
+            )
+
+
+
